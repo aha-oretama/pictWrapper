@@ -1,5 +1,6 @@
 package aha.oretama.jp;
 
+import aha.oretama.jp.exception.PictInputException;
 import aha.oretama.jp.mapper.IOPictMapper;
 import aha.oretama.jp.model.Pict;
 
@@ -19,7 +20,7 @@ public class PictPureWrapper extends AbstractPictWrapper {
         super(pictPath);
     }
 
-    public Pict run(String filePath) throws IOException {
+    public Pict run(String filePath) throws IOException, PictInputException {
         Process process = Runtime.getRuntime().exec(getExecCommand(filePath));
 
         return new IOPictMapper(process.getInputStream(), process.getErrorStream()).getPict();

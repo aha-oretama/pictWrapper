@@ -4,18 +4,17 @@ package aha.oretama.jp;
  * @author aha-oretama
  * @Date 2016/12/18
  */
-public abstract class AbstractPictWrapper {
-    protected StringBuilder command;
-    protected StringBuilder options = new StringBuilder();
+abstract class AbstractPictWrapper {
+    StringBuilder command;
+    StringBuilder options = new StringBuilder();
 
-    public AbstractPictWrapper() {
+    AbstractPictWrapper() {
         command = new StringBuilder("pict");
     }
 
-    public AbstractPictWrapper(String pictPath) {
+    AbstractPictWrapper(String pictPath) {
         command = new StringBuilder(pictPath);
     }
-
 
     public AbstractPictWrapper orderOfCombinations(int order) {
         options.append(" /o:").append(order);

@@ -1,7 +1,9 @@
 package aha.oretama.jp.mapper;
 
+import aha.oretama.jp.exception.PictInputException;
 import aha.oretama.jp.model.Pict;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,7 +33,11 @@ public class IOPictMapper {
         }
     }
 
-    public Pict getPict() {
+    public Pict getPict() throws PictInputException {
+
+        if(StringUtils.isNotEmpty(errorString)) {
+            throw new PictInputException(errorString);
+        }
 
         List<String> titles = Arrays.asList(ioString.get(0).split("\\t"));
         List<Map<String, String>> testCases =
